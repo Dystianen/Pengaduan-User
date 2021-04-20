@@ -40,6 +40,7 @@ Vue.filter('format', function(value) {
             .then(response => {
               if (response.data.success == false) {
                 this.$store.commit('logout')
+                router.push('/login');
               } else {
                 this.$store.commit('userDetail', response.data.data.user)
               }

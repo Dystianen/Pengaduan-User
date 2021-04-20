@@ -14627,6 +14627,7 @@ button.close {
 }
 
 .modal-header .close {
+  color: #fff;
   padding: 1rem;
   margin: -1rem -1rem -1rem auto;
 }
@@ -26975,7 +26976,8 @@ div.tagsinput span.tag a {
 }
 
 .auth .brand-logo {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 35%;
 }
 
 .auth .brand-logo img {

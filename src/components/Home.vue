@@ -7,7 +7,7 @@
         >
           <h1>Selamat Datang di Website Pengaduan Masyarakat</h1>
           <h2>
-            Kami siap melayani & membantu anda untuk pengaduan atau keluhan yang
+            Kami siap melayani & membantu anda untuk melakukan pengaduan atas keluhan yang
             anda alami dikehidupan masyarakat
           </h2>
           <div>

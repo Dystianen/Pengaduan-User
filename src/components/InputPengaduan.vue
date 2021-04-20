@@ -18,13 +18,22 @@
               <div class="table-responsive">
                 <b-table striped hover :items="pengaduan" :fields="fields">
                   <template v-slot:cell(status)="data">
-                    <b-badge variant="info" style="text-transform: uppercase;">{{ data.item.status }}</b-badge>
+                    <b-badge variant="info" style="text-transform: uppercase">{{
+                      data.item.status
+                    }}</b-badge>
                   </template>
                   <template v-slot:cell(kategori)="data">
-                    <b-badge variant="warning" style="text-transform: uppercase;">{{ data.item.kategori.nama_kategori }}</b-badge>
+                    <b-badge
+                      variant="warning"
+                      style="text-transform: uppercase"
+                      >{{ data.item.kategori.nama_kategori }}</b-badge
+                    >
                   </template>
                   <template v-slot:cell(tanggal)="data">
                     {{ data.item.tgl_pengaduan | format }}
+                  </template>
+                  <template v-slot:cell(laporan)="data">
+                    {{ data.item.isi_laporan | format }}
                   </template>
                   <template v-slot:cell(tanggapan)="data">
                     {{
@@ -39,13 +48,22 @@
                       :src="'http://localhost:8000/uploads/' + data.item.foto"
                     />
                   </template>
+                  <template v-slot:cell(action)="data">
+                    <b-button
+                      variant="success"
+                      v-b-modal.modalMasyarakat
+                      v-on:click="Edit(data.item)"
+                      ><i class="mdi mdi-plus btn-icon-prepend"></i> 
+                      Pengaduan</b-button
+                    >
+                  </template>
                 </b-table>
 
                 <b-modal id="modalMasyarakat" @ok="Save">
                   <template v-slot:modal-title> Form Masyarakat</template>
                   <form ref="form">
                     <div class="form-group">
-                      <label for="tanggapan" class="col-form-label"
+                      <label for="tgl_pengaduan" class="col-form-label"
                         >Tanggal Pengaduan</label
                       >
                       <input
@@ -70,9 +88,7 @@
                       ></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="foto" class="col-form-label"
-                        >File</label
-                      >
+                      <label for="foto" class="col-form-label">File</label>
                       <input
                         type="file"
                         name="foto"
@@ -91,8 +107,16 @@
                         id="id_kategori"
                         v-model="id_kategori"
                       >
-                      <option value="" disabled selected>Pilih Kategori</option>
-                      <option :value="kategori.id_kategori" v-for="(kategori, index) in kategori " :key="index">{{kategori.nama_kategori}}</option>
+                        <option value="" disabled selected>
+                          Pilih Kategori
+                        </option>
+                        <option
+                          :value="kategori.id_kategori"
+                          v-for="(kategori, index) in kategori"
+                          :key="index"
+                        >
+                          {{ kategori.nama_kategori }}
+                        </option>
                       </select>
                     </div>
                   </form>
@@ -140,6 +164,7 @@ module.exports = {
       id_kategori: "",
       action: "",
       message: "",
+      pagination: "",
       currentPage: 1,
       rows: 0,
       perPage: 10,
@@ -147,7 +172,14 @@ module.exports = {
       user: [],
       pengaduan: [],
       kategori: [],
-      fields: ["tanggal", "isi_laporan", "kategori", "status", "foto", "tanggapan"],
+      fields: [
+        "tanggal",
+        "laporan",
+        "kategori",
+        "status",
+        "foto",
+        "tanggapan",
+      ],
     };
   },
 
@@ -206,7 +238,8 @@ module.exports = {
       form.append("foto", document.getElementById("foto").files[0]);
       form.append("id_kategori", this.id_kategori);
 
-      this.axios.post("/masyarakat/pengaduan", form, conf)
+      this.axios
+        .post("/masyarakat/pengaduan", form, conf)
         .then((response) => {
           this.$bvToast.hide("loadingToast");
           this.message = response.data.message;
@@ -219,10 +252,10 @@ module.exports = {
     },
     getKategori() {
       let conf = { headers: { Authorization: "Bearer " + this.key } };
-      this.axios.get('kategori', conf).then((response => {
+      this.axios.get("kategori", conf).then((response) => {
         console.log(response);
-        this.kategori = response.data.data.kategori
-      }))
+        this.kategori = response.data.data.kategori;
+      });
     },
   },
   mounted() {

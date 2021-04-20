@@ -6,16 +6,23 @@
           <div class="content-wrapper d-flex align-items-center auth">
             <div class="row w-100">
               <div class="col-lg-4 mx-auto">
-                <div class="auth-form-light text-left p-5">
-                  <!-- <div class="navbar-brand brand-logo">
-                        <img src="../assets/logo.png" style="width: 100px">
-                      </div> -->
-                  <h4>Selamat datang!</h4>
+                <div
+                  class="auth-form-light p-4"
+                  style="
+                    border-radius: 3%;
+                    background-color: brown;  
+                  "
+                >
+                  <div class="navbar-brand brand-logo">
+                    <img src="../../public/logo.png" style="width: 100px" />
+                  </div>
+                  <!-- <h4 class="text-warning">Selamat datang!</h4>
                   <h6 class="font-weight-light">
                     Silahkan login terlebih dahulu
-                  </h6>
+                  </h6> -->
                   <form v-on:submit.prevent="Login">
                     <b-form-group
+                      class="text-white text-center"
                       id="lbl_username"
                       label="Username"
                       label-for="input_username"
@@ -24,11 +31,13 @@
                         id="input_username"
                         v-model="username"
                         placeholder="Alamat username"
+                        class="text-white"
                         trim
                       ></b-form-input>
                     </b-form-group>
 
                     <b-form-group
+                      class="text-white text-center"
                       id="lbl_password"
                       label="Password"
                       label-for="input_password"
@@ -38,15 +47,16 @@
                         id="input_password"
                         v-model="password"
                         placeholder="Kata sandi"
+                        class="text-white"
                         trim
                       ></b-form-input>
                     </b-form-group>
 
-                    <b-button variant="secondary" block type="submit"
+                    <b-button variant="warning" block type="submit"
                       >Login
                     </b-button>
-                    <h6 class="font-weight-light">
-                      <a   v-b-modal.modalRegister v-on:click="Add"
+                    <h6 class="font-weight-light mt-3">
+                      <a class="text-white" v-b-modal.modalRegister v-on:click="Add"
                         >Anda belum mempunyai akun masyarakat?</a
                       >
                     </h6>
@@ -72,7 +82,7 @@
               />
             </div>
             <div class="form-group">
-              <label for="nama" class="col-form-label">Nam</label>
+              <label for="nama" class="col-form-label">Name</label>
               <input
                 type="text"
                 name="nama"
@@ -151,7 +161,7 @@ export default {
       this.$store
         .dispatch("login", { username, password })
         .then((response) => {
-          localStorage.setItem('nama', response.data.data.user.nama);
+          localStorage.setItem("nama", response.data.data.user.nama);
           this.message = response.data.message;
           this.$bvToast.hide("loadingToast");
           this.$bvToast.show("message");
@@ -168,9 +178,9 @@ export default {
       this.telp = "";
       this.level = "";
     },
-    Save : function(){
+    Save: function () {
       this.$bvToast.show("loadingToast");
-      if(this.action === "insert"){
+      if (this.action === "insert") {
         let form = new FormData();
         form.append("id", this.id);
         form.append("nik", this.nik);
@@ -179,16 +189,17 @@ export default {
         form.append("password", this.password);
         form.append("telp", this.telp);
 
-        this.axios.post("/registerMasyarakat", form)
-        .then(response => {
-          this.$bvToast.hide("loadingToast");
-          this.$router.push('/login')
-          this.message = response.data.message;
-          this.$bvToast.show("message");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        this.axios
+          .post("/registerMasyarakat", form)
+          .then((response) => {
+            this.$bvToast.hide("loadingToast");
+            this.$router.push("/login");
+            this.message = response.data.message;
+            this.$bvToast.show("message");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
         let form = {
           nik: this.nik,
@@ -196,21 +207,22 @@ export default {
           username: this.username,
           password: this.password,
           telp: this.telp,
-        }
-        this.axios.put("/login" + this.id, form)
-        .then(response => {
-          this.$bvToast.hide("loadingToast");
-          if(this.search == ""){
-            this.getData();
-          } else {
-            this.searching();
-          }
-          this.message = response.data.message;
-          this.$bvToast.show("message");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        };
+        this.axios
+          .put("/login" + this.id, form)
+          .then((response) => {
+            this.$bvToast.hide("loadingToast");
+            if (this.search == "") {
+              this.getData();
+            } else {
+              this.searching();
+            }
+            this.message = response.data.message;
+            this.$bvToast.show("message");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     },
   },
