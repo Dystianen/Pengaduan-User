@@ -7,6 +7,7 @@ import NavbarMasyarakat from '../components/layouts/NavbarMasyarakat.vue'
 import Footer from '../components/layouts/Footer.vue'
 import Home from '../components/Home.vue'
 import InputPengaduan from '../components/InputPengaduan.vue'
+import Detail from '../components/Detail.vue'
 
 
 
@@ -35,6 +36,15 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/detail/:id_pengaduan',
+    name: 'detail',
+    components: {default: Detail},
+    meta: {
+      title: "Detail",
+      requiresAuth: true
+    }
+  }
 ]
 
 const router = new VueRouter({

@@ -1,9 +1,8 @@
 <template>
-  <div>
     <div class="container mt-3">
       <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
-          <div class="card">
+          <div class="card mt-5">
             <div class="card-body">
               <p class="card-title float-left"><b>Data Pengaduan</b></p>
               <p class="card-description float-right">
@@ -18,22 +17,18 @@
               <div class="table-responsive">
                 <b-table striped hover :items="pengaduan" :fields="fields">
                   <template v-slot:cell(status)="data">
-                    <b-badge variant="info" style="text-transform: uppercase">{{
-                      data.item.status
-                    }}</b-badge>
+                    <b-badge variant="warning">{{ data.item.status }}</b-badge>
                   </template>
                   <template v-slot:cell(kategori)="data">
-                    <b-badge
-                      variant="warning"
-                      style="text-transform: uppercase"
-                      >{{ data.item.kategori.nama_kategori }}</b-badge
-                    >
+                    <b-badge variant="warning">{{
+                      data.item.kategori.nama_kategori
+                    }}</b-badge>
                   </template>
                   <template v-slot:cell(tanggal)="data">
                     {{ data.item.tgl_pengaduan | format }}
                   </template>
                   <template v-slot:cell(laporan)="data">
-                    {{ data.item.isi_laporan | format }}
+                    {{ data.item.isi_laporan }}
                   </template>
                   <template v-slot:cell(tanggapan)="data">
                     {{
@@ -50,11 +45,12 @@
                   </template>
                   <template v-slot:cell(action)="data">
                     <b-button
-                      variant="success"
-                      v-b-modal.modalMasyarakat
-                      v-on:click="Edit(data.item)"
-                      ><i class="mdi mdi-plus btn-icon-prepend"></i> 
-                      Pengaduan</b-button
+                      size="sm"
+                      variant="danger"
+                      @click="Detail(data.item.id_pengaduan)"
+                      to="/detail"
+                      ><i class="mdi mdi-file-document btn-icon-prepend"></i>
+                      detail</b-button
                     >
                   </template>
                 </b-table>
@@ -79,13 +75,13 @@
                       <label for="isi_laporan" class="col-form-label"
                         >Laporan</label
                       >
-                      <textarea
-                        class="form-control"
-                        name="isi_laporan"
+                      <b-form-textarea
                         id="isi_laporan"
                         v-model="isi_laporan"
+                        placeholder="isi_laporan"
                         rows="3"
-                      ></textarea>
+                        max-rows="6"
+                      ></b-form-textarea>
                     </div>
                     <div class="form-group">
                       <label for="foto" class="col-form-label">File</label>
@@ -145,7 +141,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -174,11 +169,10 @@ module.exports = {
       kategori: [],
       fields: [
         "tanggal",
-        "laporan",
         "kategori",
         "status",
-        "foto",
         "tanggapan",
+        "action",
       ],
     };
   },
@@ -206,6 +200,29 @@ module.exports = {
         .catch((error) => {
           console.log(error);
         });
+    },
+
+    Detail(id_pengaduan) {
+      let conf = { headers: { Authorization: "Bearer " + this.key } };
+      this.$bvToast.show("loadingToast");
+      this.axios
+        .get("/detail/" + id_pengaduan, conf)
+        .then((response) => {
+          if (response.data.success) {
+            this.$bvToast.hide("loadingToast");
+            this.pengaduan = response.data.data.pengaduan[0];
+            this.user = response.data.data.pengaduan[0].user;
+            this.rows = response.data.data.count;
+          } else {
+            this.$bvToast.hide("loadingToast");
+            this.message = "Gagal menampilkan detail pengaduan.";
+            this.$bvToast.show("message");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        this.$router.push({name: 'detail', params: {id_pengaduan:id_pengaduan}})
     },
 
     Add: function () {

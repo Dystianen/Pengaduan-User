@@ -8717,9 +8717,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Quicksand,sans-serif" !important;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500 !important;
   line-height: 1.5;
   color: #222222;
   text-align: left;
@@ -26977,7 +26977,6 @@ div.tagsinput span.tag a {
 
 .auth .brand-logo {
   margin-bottom: 1rem;
-  margin-left: 35%;
 }
 
 .auth .brand-logo img {
@@ -27747,7 +27746,7 @@ div.tagsinput span.tag a {
 #hero {
   width: 100%;
   height: 80vh;
-  background: #f9f9f9;
+  background: #ffffff;
 }
 
 #hero .container {

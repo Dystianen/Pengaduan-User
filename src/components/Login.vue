@@ -11,10 +11,11 @@
                   style="
                     border-radius: 3%;
                     background-color: brown;  
+                    text-align: center;
                   "
                 >
-                  <div class="navbar-brand brand-logo">
-                    <img src="../../public/logo.png" style="width: 100px" />
+                  <div class="navbar-brand brand-logo text-center">
+                    <img src="../../public/logo.png" style="width: 100px; " />
                   </div>
                   <!-- <h4 class="text-warning">Selamat datang!</h4>
                   <h6 class="font-weight-light">
@@ -22,7 +23,7 @@
                   </h6> -->
                   <form v-on:submit.prevent="Login">
                     <b-form-group
-                      class="text-white text-center"
+                      class="text-white "
                       id="lbl_username"
                       label="Username"
                       label-for="input_username"
