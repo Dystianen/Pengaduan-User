@@ -4,7 +4,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card mt-5">
             <div class="card-body">
-              <p class="card-title float-left"><b>Data Pengaduan</b></p>
+              <p class="card-title float-left text-warning"><b>Data Pengaduan</b></p>
               <p class="card-description float-right">
                 <b-button
                   variant="success"
@@ -169,6 +169,7 @@ module.exports = {
       kategori: [],
       fields: [
         "tanggal",
+        "foto",
         "kategori",
         "status",
         "tanggapan",

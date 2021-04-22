@@ -8717,7 +8717,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Quicksand,sans-serif" !important;
+  font-family: "Quicksand",sans-serif !important;
   font-size: 1rem;
   font-weight: 500 !important;
   line-height: 1.5;
@@ -8794,6 +8794,7 @@ dfn {
 b,
 strong {
   font-weight: bolder;
+  text-decoration: underline;
 }
 
 small {
@@ -10036,6 +10037,8 @@ pre code {
   vertical-align: bottom;
   border-bottom: 2px solid #f3f3f3;
   text-align: center;
+  background-color: chocolate;
+  color: white;
 }
 
 .table tbody + tbody, .jsgrid .jsgrid-table tbody + tbody {
@@ -14527,6 +14530,7 @@ input[type="button"].btn-block {
 
 .close:not(:disabled):not(.disabled) {
   cursor: pointer;
+  color: yellow;
 }
 
 button.close {
@@ -15697,7 +15701,7 @@ button.bg-dark:focus {
 
 .flex-grow-1 {
   flex-grow: 1 !important;
-  background-color: brown;
+  background-color: #d8000f;
 }
 
 .flex-shrink-0 {
@@ -26988,14 +26992,14 @@ div.tagsinput span.tag a {
 }
 
 .auth form .form-group label {
-  font-size: .8125rem;
+  font-size: 1.2rem;
 }
 
 .auth form .form-group .form-control, .auth form .form-group .asColorPicker-input, .auth form .form-group .dataTables_wrapper select, .dataTables_wrapper .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=text],
 .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row select, .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=number], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=number], .auth form .form-group .select2-container--default .select2-selection--single, .select2-container--default .auth form .form-group .select2-selection--single, .auth form .form-group .select2-container--default .select2-selection--single .select2-search__field, .select2-container--default .select2-selection--single .auth form .form-group .select2-search__field, .auth form .form-group .typeahead,
 .auth form .form-group .tt-query,
 .auth form .form-group .tt-hint {
-  background: transparent;
+  background: whitesmoke;
   border-radius: 0;
   font-size: .9375rem;
 }
@@ -27094,7 +27098,7 @@ div.tagsinput span.tag a {
   text-align: left;
 }
 .horizontal-menu .top-navbar .navbar-brand-wrapper .navbar-h2 {
-  color: navajowhite;
+  color: white;
   font-size: 1.2rem;
   line-height: 48px;
   margin-bottom: -3px !important;

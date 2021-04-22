@@ -5,6 +5,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card mt-5">
             <div class="card-body">
+              <p class="card-title text-center text-warning" style="font-size: 1.2rem"><b>Detail Pengaduan</b></p>
               <img
                 style="width: 100%; height: auto; border-radius: 5%"
                 :src="'http://localhost:8000/uploads/' + pengaduan.foto"
@@ -34,7 +35,7 @@
               <div class="float-right">
                 <router-link to="/input" class="nav-link">
                   <i class="mdi mdi-skip-backward"></i>
-                  <span class="menu-title"> back</span>
+                  <span class="menu-title" style="font-size: 1.5rem;"> back</span>
                 </router-link>
               </div>
               <b-toast id="loadingToast" title="Processing Data" no-auto-hide>
@@ -110,7 +111,6 @@ module.exports = {
           console.log(error);
         });
     },
-
   },
   mounted() {
     this.key = localStorage.getItem("Authorization");

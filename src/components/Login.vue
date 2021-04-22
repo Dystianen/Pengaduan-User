@@ -10,12 +10,12 @@
                   class="auth-form-light p-4"
                   style="
                     border-radius: 3%;
-                    background-color: brown;  
+                    background-color: #d8000f;  
                     text-align: center;
                   "
                 >
                   <div class="navbar-brand brand-logo text-center">
-                    <img src="../../public/logo.png" style="width: 100px; " />
+                    <img src="../../public/yh.png" style="width: 150px; " />
                   </div>
                   <!-- <h4 class="text-warning">Selamat datang!</h4>
                   <h6 class="font-weight-light">
@@ -32,7 +32,6 @@
                         id="input_username"
                         v-model="username"
                         placeholder="Alamat username"
-                        class="text-white"
                         trim
                       ></b-form-input>
                     </b-form-group>
@@ -48,12 +47,11 @@
                         id="input_password"
                         v-model="password"
                         placeholder="Kata sandi"
-                        class="text-white"
                         trim
                       ></b-form-input>
                     </b-form-group>
 
-                    <b-button variant="warning" block type="submit"
+                    <b-button class="btn btn-warning btn-sm" block type="submit"
                       >Login
                     </b-button>
                     <h6 class="font-weight-light mt-3">
@@ -166,7 +164,7 @@ export default {
           this.message = response.data.message;
           this.$bvToast.hide("loadingToast");
           this.$bvToast.show("message");
-          this.$router.push("/input");
+          this.$router.push("/");
         })
         .catch((err) => console.log(err));
     },

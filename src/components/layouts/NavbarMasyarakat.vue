@@ -5,9 +5,9 @@
         <div class="container d-flex flex-row h-100 align-items-center">
           <div
             class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center"
-          >
-            <a class="navbar-brand brand-logo disabled"
-              ><img src="../../../public/img/logo.png"
+         >
+            <a class="navbar-brand brand-logo disabled" 
+              ><img style="height: 63px" src="../../../public/yh.png"
             /></a>
             <h2 class="navbar-h2">Pengaduan Masyarakat</h2>
           </div>
